@@ -5,8 +5,7 @@
 , writeText
 , removeReferencesTo
 , linuxPackagesFor
-, _4KBuild ? false
-, withRust ? false
+, withRust ? true
 , _kernelPatches ? [ ]
 }:
 
@@ -114,21 +113,6 @@ let
             url = "https://github.com/AsahiLinux/linux/commit/6a24102c06c95951ab992e2d41336cc6d4bfdf23.patch";
             hash = "sha256-wn5x2hN42/kCp/XHBvLWeNLfwlOBB+T6UeeMt2tSg3o=";
           };
-        }
-      ] ++ lib.optionals _4KBuild [
-        # thanks to Sven Peter
-        # https://lore.kernel.org/linux-iommu/20211019163737.46269-1-sven@svenpeter.dev/
-        { name = "sven-iommu-4k";
-          patch = ./sven-iommu-4k.patch;
-        }
-        (builtins.throw "The Asahi 4K kernel patch is currently broken. Contributions to fix are welcome.")
-      ] ++ lib.optionals (!_4KBuild) [
-        # patch the kernel to set the default size to 16k instead of modifying
-        # the config so we don't need to convert our config to the nixos
-        # infrastructure or patch it and thus introduce a dependency on the host
-        # system architecture
-        { name = "default-pagesize-16k";
-          patch = ./default-pagesize-16k.patch;
         }
       ] ++ _kernelPatches;
 
