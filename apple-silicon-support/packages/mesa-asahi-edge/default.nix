@@ -20,8 +20,8 @@
     domain = "gitlab.freedesktop.org";
     owner = "asahi";
     repo = "mesa";
-    rev = "asahi-20241109";
-    hash = "sha256-RHcQVjSnA6DoZjuCzi8tPgCyHPbY8gwu/oGxWVmQsFw=";
+    rev = "asahi-20241111";
+    hash = "sha256-WRykReDv8XekkumfLqc4P+p+OVYrjUF+bLfAKtx9zTc=";
   };
 
   mesonFlags =
