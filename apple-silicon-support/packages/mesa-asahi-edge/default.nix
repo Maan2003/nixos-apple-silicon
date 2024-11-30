@@ -20,8 +20,8 @@
     domain = "gitlab.freedesktop.org";
     owner = "asahi";
     repo = "mesa";
-    rev = "asahi-20241111";
-    hash = "sha256-WRykReDv8XekkumfLqc4P+p+OVYrjUF+bLfAKtx9zTc=";
+    rev = "asahi-20241128";
+    hash = "sha256-y1ij7nellQhRRV0woks9QlUdY371ro1UGZ9L/4fUtQg=";
   };
 
   mesonFlags =
@@ -31,6 +31,7 @@
     (lib.hasPrefix "-Dxvmc-libs-path=" x)
     || (lib.hasPrefix "-Ddri-search-path=" x)
     || (lib.hasPrefix "-Domx-libs-path=" x)
+    || (lib.hasPrefix "-Dopencl-spirv=" x)
     )) oldAttrs.mesonFlags) ++ [
       # we do not build any graphics drivers these features can be enabled for
       "-Dgallium-va=disabled"
